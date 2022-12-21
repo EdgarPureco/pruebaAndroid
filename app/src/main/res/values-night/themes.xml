@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Prueba_ITSmart" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/darker</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/darker</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ButtonDelete" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="backgroundTint">@color/danger</item>
+        <item name="iconTint">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="FloatButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/dark</item>
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="ToolBar">
+        <item name="android:background">@color/darker</item>
+    </style>
+
+</resources>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.EditarCliente">
+
+    <!--            Inicio Top Bar     -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/TopBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:title="ITSmartS"
+                android:background="@color/primary"
+                android:layout_gravity="center"
+                app:titleCentered="true"
+                app:titleTextColor="@color/white"
+
+                />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!--            Fin Top Bar   -->
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="Editar cliente"
+        android:textAllCaps="true"
+        android:layout_below="@+id/TopBar"
+        tools:layout_editor_absoluteX="105dp" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/separador"
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/txtTitle" />
+
+    <ScrollView
+        android:id="@+id/layoutCampos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/separador"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtIdCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Id Cliente"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:editable="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre/s"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:layout_marginTop="10dp"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtApellidoP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido Paterno"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtApellidoM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido Materno"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefono"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPuesto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Puesto"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtSucursal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Sucursal"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtRfc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="RFC"
+                    android:maxLength="13"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNombreFiscal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre Fiscal"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtLatitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Latitud"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtLongitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Longitud"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Estado"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Municipio"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCodPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código Postal"
+                    android:maxLength="5"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtColonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Colonia"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtReferencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Referencia"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/save_24"
+                style="@style/FloatButton"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+
+</RelativeLayout>
