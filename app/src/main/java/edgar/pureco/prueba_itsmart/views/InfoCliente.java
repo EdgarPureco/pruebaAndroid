@@ -10,6 +10,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import edgar.pureco.prueba_itsmart.R;
 import edgar.pureco.prueba_itsmart.api.API;
 import edgar.pureco.prueba_itsmart.api.ClienteAPI;
+import edgar.pureco.prueba_itsmart.api.EstadoAPI;
+import edgar.pureco.prueba_itsmart.api.MunicipioAPI;
 import edgar.pureco.prueba_itsmart.models.Cliente;
 import edgar.pureco.prueba_itsmart.models.Estado;
 import edgar.pureco.prueba_itsmart.models.Municipio;
@@ -49,7 +51,7 @@ public class InfoCliente extends AppCompatActivity {
         String idMunicipio = cliente.getFkMunicipio().toString();
 
 //        Obtencion del nombre del estado por medio del ID
-        Call<Estado> callEstado = API.getClient().create(ClienteAPI.class).getEstado(idEstado);
+        Call<Estado> callEstado = API.getClient().create(EstadoAPI.class).getEstado(idEstado);
         callEstado.enqueue(new Callback<Estado>() {
             @Override
             public void onResponse(Call<Estado> call, Response<Estado> response) {
@@ -67,7 +69,7 @@ public class InfoCliente extends AppCompatActivity {
         });
 
         //        Obtencion del nombre del municipio por medio del ID
-        Call<Municipio> callMunicipio = API.getClient().create(ClienteAPI.class).getMunicipio(idMunicipio);
+        Call<Municipio> callMunicipio = API.getClient().create(MunicipioAPI.class).getMunicipio(idMunicipio);
         callMunicipio.enqueue(new Callback<Municipio>() {
             @Override
             public void onResponse(Call<Municipio> call, Response<Municipio> response) {

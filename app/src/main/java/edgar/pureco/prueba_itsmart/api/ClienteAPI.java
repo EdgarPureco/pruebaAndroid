@@ -1,8 +1,12 @@
 package edgar.pureco.prueba_itsmart.api;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import edgar.pureco.prueba_itsmart.models.ClienteList;
 import edgar.pureco.prueba_itsmart.models.ClienteModel;
 import edgar.pureco.prueba_itsmart.models.Estado;
+import edgar.pureco.prueba_itsmart.models.EstadoList;
 import edgar.pureco.prueba_itsmart.models.Municipio;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,15 +34,5 @@ public interface ClienteAPI {
 //  Actualizar
     @PUT("api/clientes/{id}")
     Call<ResponseBody> actualizarCliente(@Path("id") String id, @Body ClienteModel cliente);
-
-
-//    Estados
-    @GET("api/estados/{estado}")
-    Call<Estado> getEstado(@Path("estado") String estado);
-
-//    Municipios
-    @GET("api/municipios/{municipio}")
-    Call<Municipio> getMunicipio(@Path("municipio") String municipio);
-
 
 }

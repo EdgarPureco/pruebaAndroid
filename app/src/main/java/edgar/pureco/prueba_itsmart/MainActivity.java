@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         public void OnEliminarClick(Cliente cliente) {
                             Modal modal = new Modal();
                             String idCliente = cliente.getId().toString();
-                            modal.showModal(MainActivity.this, idCliente);
+                            modal.showModalMaterial(MainActivity.this, idCliente);
                         }
                     });
                 }

@@ -229,28 +229,28 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <com.google.android.material.textfield.TextInputEditText
+                android:layout_marginTop="10dp"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
                     android:id="@+id/txtEstado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Estado"
-                    android:maxLength="100"
-                    android:maxLines="1"
+                    android:inputType="none"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <com.google.android.material.textfield.TextInputEditText
+                android:layout_marginTop="10dp"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
                     android:id="@+id/txtMunicipio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Municipio"
-                    android:maxLength="100"
-                    android:maxLines="1"
+                    android:inputType="none"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
