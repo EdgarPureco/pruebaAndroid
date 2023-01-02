@@ -1,8 +1,18 @@
 package edgar.pureco.prueba_itsmart.views;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +21,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,26 +46,36 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CrearCliente extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class CrearCliente extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private TextInputEditText txtNombre;
     private TextInputEditText txtApellidoP;
-   private TextInputEditText txtApellidoM;
-   private TextInputEditText txtTelefono;
-   private TextInputEditText txtPuesto;
-   private TextInputEditText txtSucursal;
-   private TextInputEditText txtRfc;
-   private TextInputEditText txtNombreFiscal;
-   private TextInputEditText txtLatitud;
-   private TextInputEditText txtLongitud;
-   private MaterialAutoCompleteTextView txtEstado;
-   private MaterialAutoCompleteTextView txtMunicipio;
-   private TextInputEditText txtCodPost;
-   private TextInputEditText txtColonia;
-   private TextInputEditText txtReferencia;
-   private FloatingActionButton btnGuardar;
-   private Integer idEstado;
-   private Integer idMunicipio;
+    private TextInputEditText txtApellidoM;
+    private TextInputEditText txtTelefono;
+    private TextInputEditText txtPuesto;
+    private TextInputEditText txtSucursal;
+    private TextInputEditText txtRfc;
+    private TextInputEditText txtNombreFiscal;
+    private TextInputEditText txtLatitud;
+    private TextInputEditText txtLongitud;
+    private MaterialAutoCompleteTextView txtEstado;
+    private MaterialAutoCompleteTextView txtMunicipio;
+    private TextInputEditText txtCodPost;
+    private TextInputEditText txtColonia;
+    private TextInputEditText txtReferencia;
+    private FloatingActionButton btnGuardar;
+    private Integer idEstado;
+    private Integer idMunicipio;
+
+    private GoogleMap mMap;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +105,29 @@ public class CrearCliente extends AppCompatActivity {
                  validaciones();
              }
          });
+
+         // Permisos para la ubicación
+        ActivityResultLauncher<String[]> locationPermissionRequest =
+                registerForActivityResult(new ActivityResultContracts
+                                .RequestMultiplePermissions(), result -> {
+                            Boolean fineLocationGranted = result.getOrDefault(
+                                    Manifest.permission.ACCESS_FINE_LOCATION, false);
+                        }
+                );
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            locationPermissionRequest.launch(new String[] {
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            });
+        }
+
+//         Crear mapa
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this::onMapReady);
 
 //         Obtener todos los estados para generarlos en el input
         Call<EstadoList> call = API.getClient().create(EstadoAPI.class).getAllEstados();
@@ -147,6 +193,27 @@ public class CrearCliente extends AppCompatActivity {
 
     }
 
+    @RequiresPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        this.mMap.setOnMapClickListener(this);
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            LatLng ubicacion = new LatLng(location.getLatitude(), location.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+                        }
+                    }
+                });
+
+
+    }
 
     public void guardarCliente(ClienteModel cliente){
 
@@ -334,4 +401,12 @@ public class CrearCliente extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onMapClick(@NonNull LatLng coords) {
+        String lat = Double.toString(coords.latitude);
+        txtLatitud.setText(lat);
+
+        String lon = Double.toString(coords.longitude);
+        txtLongitud.setText(lon);
+    }
 }
